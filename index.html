@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Pigguuu ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+}
+
+h1 {
+    font-size: 35px;
+    color: white;
+}
+
+#surprise {
+    display: none;
+    font-size: 24px;
+    color: yellow;
+    margin-top: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #fff;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: #ff1e4d;
+}
+
+#noBtn {
+    position: absolute;
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="typing"></h1>
+
+<button onclick="showLove()">Click for Surprise 🎁</button>
+
+<div id="surprise">
+    Will you always be mine? 💍<br><br>
+    <button onclick="yesClicked()">YES ❤️</button>
+    <button id="noBtn" onmouseover="moveNo()">NO 😜</button>
+</div>
+
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Typing Effect
+const text = "I love you so much nanna my pigguuu ❤️";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 80);
+    }
+}
+typeWriter();
+
+// Show Surprise
+function showLove() {
+    document.getElementById("surprise").style.display = "block";
+}
+
+// YES clicked
+function yesClicked() {
+    document.getElementById("surprise").innerHTML =
+    "Yayyy 💖 I knew it 😘 Forever together 🫶";
+}
+
+// NO button runs away
+function moveNo() {
+    const btn = document.getElementById("noBtn");
+    btn.style.top = Math.random() * window.innerHeight + "px";
+    btn.style.left = Math.random() * window.innerWidth + "px";
+}
+
+// Floating Hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
